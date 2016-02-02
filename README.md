@@ -20,7 +20,7 @@ module.exports = function (poppins) {
   poppins.couldYouPlease('pr-qa');
 
   // pr - added when the pull request is opened
-  poppins.plugins.prQA.comment = 'Thanks for the changes! Here's some things that will be checked.
+  poppins.plugins.prQA.comment = 'Thanks for the changes! Here\'s some things that will be checked.
 	'...'
 };
 ```
