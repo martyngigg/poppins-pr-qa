@@ -5,18 +5,16 @@ var poppins, prQA;
 
 module.exports = function initPlugin (pop) {
   poppins = pop;
-
   prQA = poppins.plugins.prQA = _.defaults(poppins.plugins.prQA || {}, {
-
     responseBody: responseBody,
 
-    newPRComment : 'Thanks for the PR!',
+    comment: 'Thanks for the PR!',
   });
 
-  poppins.on('pullRequestOpened', respondToPullRequest);
+  poppins.on('pullRequestOpened', respondToNewPullRequest);
 };
 
-function respondToPullRequest (data) {
+function respondToNewPullRequest (data) {
   var number = data.pull_request.number;
 
   return prQA.responseBody(data).
@@ -29,5 +27,5 @@ function respondToPullRequest (data) {
 }
 
 function responseBody (data) {
-  return Q(prQA.newPRComment);
+  return Q(prQA.comment);
 }
