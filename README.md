@@ -1,12 +1,11 @@
 # poppins-pr-qa
 
-Mary Poppins plugin for helping the Mantid QA process
-
+Mary Poppins plugin for helping the Mantid QA process. It is a simpler version of
+[poppins-pr-checklist](https://github.com/btford/poppins-pr-checklist) that simply attaches the comment text as is.
 
 ## Install
 
 `npm install poppins-pr-qa`
-
 
 ## Configure
 
@@ -21,9 +20,7 @@ module.exports = function (poppins) {
   poppins.couldYouPlease('pr-qa');
 
   // pr - added when the pull request is opened
-  poppins.plugins.prQA.firstReviewComment = 'Thanks for the changes! The following points are to aid the reviewers.\n' +
+  poppins.plugins.prQA.comment = 'Thanks for the changes! Here's some things that will be checked.
 	'...'
-  // added when the keyword defined for shipping is used in a comment
-  poppins.plugins.prQA.secondReviewComment = ''
 };
 ```
