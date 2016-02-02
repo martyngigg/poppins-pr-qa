@@ -1,5 +1,6 @@
 var _ = require('lodash');
 var Q = require('q');
+var fs = require('fs');
 
 var poppins, prQA;
 
@@ -27,5 +28,14 @@ function respondToNewPullRequest (data) {
 }
 
 function responseBody (data) {
-  return Q(prQA.comment);
+  if (prQA.comment.indexOf('file://') == 0) {
+    return Q(readFromFile(prQA.comment.slice(7)));
+  } else {
+    return Q(prQA.comment);
+  }
+}
+
+// Read contents and trim any leanding & trailing whitespace
+function readFromFile (filename) {
+  return fs.readFileSync(filename).toString().trim();
 }

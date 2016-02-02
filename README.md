@@ -21,5 +21,7 @@ module.exports = function (poppins) {
 
   // pr - added when the pull request is opened
   poppins.plugins.prQA.comment = 'Thanks for the changes! Here\'s some things that will be checked.'
+  // or prefix string with file:// to load text from a file. Paths are used as is.
+  // poppins.plugins.prQA.comment = 'file://poppins-qa-response.md'
 };
 ```

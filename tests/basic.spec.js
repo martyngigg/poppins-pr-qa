@@ -20,13 +20,23 @@ describe('poppins-pr-qa', function () {
     });
   });
 
-  it('should use defined comment for new pull requests', function (done) {
+  it('should use comment as defined without file prefix', function (done) {
     var comment = 'Thank you.'
     poppins.plugins.prQA.comment = comment;
 
     poppins.simulatePrCreated(pr);
     poppins.on('plugin:pr:done', function () {
       expect(poppins.createComment.args[0]).toEqual([pr.number, comment]);
+      done();
+    });
+  });
+
+  it('should use text from file is comment prefixed with file://', function (done) {
+    poppins.plugins.prQA.comment = 'file://' + __dirname + '/test-response.md';
+
+    poppins.simulatePrCreated(pr);
+    poppins.on('plugin:pr:done', function () {
+      expect(poppins.createComment.args[0]).toEqual([pr.number, 'Text from a file']);
       done();
     });
   });
